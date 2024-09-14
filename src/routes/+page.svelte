@@ -1,28 +1,15 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import { curiosity, fetchData } from '../stores/curiosity';
-
-  onMount(() => {
-   fetchData('https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=oBKUfq4ojUgfJdXxmYCP8EAnvIWw9NtXP172FpqR'); 
-  });
-
-
+  import DateDisplay from "../components/DateDisplay/index.svelte";
+  import HeroLaunch from "../components/HeroLaunch/index.svelte";
 </script>
 
-<main>
- {#if $curiosity.loading}
-  <p>Loading...</p>
-{:else if $curiosity.error}
-  <p>Error: {$curiosity.error}</p>
-{:else}
- <div class="grid grid-cols-3 justify-center items-center">
-  {#each $curiosity.data.photos.slice(0, 10) as rover}
-  <div class="p-4 flex justify-center items-center">
-  <h1 class="text-2xl font-bold text-black">{rover.id}</h1>
+<main
+  class="flex flex-col items-center justify-center h-screen bg-zinc-950 text-white p-2"
+>
+  <div class="flex flex-col justify-end items-end w-full">
+    <DateDisplay />
   </div>
-  {/each}
- </div>
-{/if}
-
+  <div class="flex flex-col w-full h-screen">
+    <HeroLaunch />
+  </div>
 </main>
-
