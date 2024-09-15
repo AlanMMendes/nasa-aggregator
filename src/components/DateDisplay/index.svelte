@@ -49,7 +49,7 @@
 <div
   class="text-center text-lg font-medium flex flex-col justify-end items-end w-32 absolute top-0 right-0"
 >
-  <p>{formattedDate}</p>
+  <p class="text-red-600">{formattedDate}</p>
   <div class="flex flex-row w-full justify-center items-center gap-2">
     <hr class=" h-[1.5px] w-full opacity-70 border-white" />
     <p class="text-[1.5px] opacity-70">{formattedMonth}</p>

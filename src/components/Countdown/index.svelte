@@ -50,7 +50,7 @@
 </script>
 
 <div class="flex flex-row gap-4">
-  <p class="text-sm font-extralight text-white">[ MISSION COUNTDOWN ]</p>
+  <p class="text-sm font-extralight text-red-500">[ MISSION COUNTDOWN ]</p>
   {#if time.expired}
     <p>BEING Launched</p>
   {:else}

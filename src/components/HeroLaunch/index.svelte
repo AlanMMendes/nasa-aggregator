@@ -5,6 +5,7 @@
   import { register } from "swiper/element/bundle";
   import { formatText } from "../../utils/utils";
   import Countdown from "../Countdown/index.svelte";
+  import DateDisplay from "../DateDisplay/index.svelte";
   import LocationDisplay from "../LocationDisplay/index.svelte";
   import Modal from "../Modal/index.svelte";
 
@@ -44,6 +45,9 @@
   {/if}
   {#if $launches.isSuccess}
     <div>{$launches.isFetching ? "Background Updating..." : " "}</div>
+    <div class="flex flex-col justify-end items-end w-full">
+      <DateDisplay />
+    </div>
     <swiper-container
       slides-per-view="1"
       effect="fade"
@@ -62,13 +66,15 @@
     >
       {#each $launches?.data?.result as launch}
         <swiper-slide
-          class="flex flex-col w-full h-full justify-center items-left min-w-full"
+          class="flex flex-col w-full h-full justify-center items-left min-w-full px-2"
         >
-          <div class="flex flex-col px-[18rem]">
+          <div class="flex flex-col sm:px-[10rem] lg:px-[24rem]">
             <div class="w-1/3 flex flex-row">
               <div class="flex flex-col">
                 <p class="text-md font-extralight">_PAD</p>
-                <p class="text-9xl font-bold text-red-600">
+                <p
+                  class="sm:text-5xl lg:text-8xl text-5xl font-bold text-red-600"
+                >
                   {formatText(launch.slug ? launch.slug : "NO-NAME-MISSION")}
                 </p>
               </div>
@@ -118,17 +124,10 @@
 
 <style>
   swiper-container::part(button-prev) {
-    color: white;
-    position: fixed;
-    top: 10%;
-    left: 1px;
+    color: rgb(250, 28, 28);
   }
   swiper-container::part(button-next) {
-    color: white;
-    position: fixed;
-    top: 10%;
-    left: 32px;
-    margin-left: 1px;
+    color: rgb(250, 28, 28);
   }
 
   swiper-container::part(bullet-active) {

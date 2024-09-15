@@ -36,26 +36,66 @@
 
 {#if isOpen}
   <button
-    class="fixed inset-0 bg-zinc-950 bg-opacity-90 flex items-center justify-center cursor-auto z-50"
+    class="fixed inset-0 bg-zinc-950 bg-opacity-90 flex items-center justify-center cursor-auto z-50 px-2"
     on:click={closeModal}
   >
     <button
-      class="relative bg-zinc-900 p-6 rounded-lg shadow-lg w-1/3 cursor-auto z-50 text-left"
+      class="relative bg-zinc-900 p-6 rounded-lg shadow-lg max-w-2/3 min-w-96 lg:w-1/3 h-auto cursor-auto z-50 text-left"
       on:click|stopPropagation
     >
       <button
-        class="absolute hover:text-red-600 top-2 right-2 text-white text-xl"
+        class="absolute top-2 right-2 text-white text-xl hover:text-red-500 hover:scale-95 transition-all duration-300"
         on:click={closeModal}>×</button
       >
       <div class="flex flex-col gap-2">
-        <h1>
-          [ _MISSION DESCRIPTION... ] - {props?.date_str?.toLocaleUpperCase()}
-        </h1>
         <div>
+          <h1 class="text-red-500">
+            _MISSION_NAME_<span class="text-white"
+              >{props?.slug?.replace(/-/g, "_").toUpperCase()}</span
+            >
+          </h1>
+          <h1 class="text-red-500">
+            _MISSION_DATE_<span class="text-white"
+              >{props?.date_str.toUpperCase()}</span
+            >
+          </h1>
+          <h1 class="text-red-500">
+            _PAD_<span class="text-white">{props?.pad.name.toUpperCase()}</span>
+          </h1>
+          <h1 class="text-red-500">
+            _PAD_LOCATION_
+            <span class="text-white"
+              >[{props?.pad.location.slug.replace(/-/g, "_").toUpperCase()}
+              _{props?.pad.location.country.toUpperCase()}]</span
+            >
+          </h1>
+          <h1 class="text-red-500">
+            _PROVIDER_<span
+              >{props?.provider?.slug?.replace(/-/g, "_")?.toUpperCase()}</span
+            >
+          </h1>
+          <h1 class="text-red-500">
+            _VEHICLE_<span class="text-white"
+              >{props?.vehicle?.name.toUpperCase()}</span
+            >
+          </h1>
+        </div>
+        <div>
+          <h1 class="text-red-500">[_MISSION_DESCRIPTION_]</h1>
           {#each charactersDescription as char, index}
             <span class="char" style={`animation-delay: ${index * delay}ms;`}>
               {char === " " ? "\u00A0" : char.toLocaleUpperCase()}
             </span>
+          {/each}
+        </div>
+        <div class="flex flex-row gap-2 justify-center items-center">
+          {#each props.tags as tag}
+            <button class="text-red-500">
+              [_<span
+                class="text-white border-b-2 border-red-500 hover:border-white transition-all duration-300"
+                >{tag.text.toUpperCase()}_</span
+              >]
+            </button>
           {/each}
         </div>
       </div>
