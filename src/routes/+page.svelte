@@ -4,7 +4,7 @@
 </script>
 
 <main
-  class="flex flex-col items-center justify-center h-screen bg-zinc-950 text-white p-2"
+  class="flex flex-col items-center justify-center h-screen bg-zinc-950 text-white"
 >
   <div class="flex flex-col justify-end items-end w-full">
     <DateDisplay />

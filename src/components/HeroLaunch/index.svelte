@@ -6,15 +6,33 @@
   import { formatText } from "../../utils/utils";
   import Countdown from "../Countdown/index.svelte";
   import LocationDisplay from "../LocationDisplay/index.svelte";
+  import Modal from "../Modal/index.svelte";
 
   const launches: any = createQuery({
     queryKey: ["launches"],
     queryFn: fetchLaunchInformation,
   });
 
+  let props: any;
+
   onMount(() => {
     register();
   });
+
+  let showModal = false;
+
+  function openModal() {
+    showModal = true;
+  }
+
+  function closeModal() {
+    showModal = false;
+  }
+
+  function handleData(event: any) {
+    openModal();
+    props = event;
+  }
 </script>
 
 <main class="w-full h-full flex flex-col justify-center items-center relative">
@@ -26,12 +44,12 @@
   {/if}
   {#if $launches.isSuccess}
     <div>{$launches.isFetching ? "Background Updating..." : " "}</div>
-    <div class="container">
-      <div class="circle-wrapper"></div>
-    </div>
     <swiper-container
       slides-per-view="1"
-      effect="slide"
+      effect="fade"
+      fadeEffect={{
+        crossFade: true,
+      }}
       keyboard={{
         enabled: true,
         onlyInViewport: false,
@@ -44,9 +62,9 @@
     >
       {#each $launches?.data?.result as launch}
         <swiper-slide
-          class="swiper-wrapper flex flex-col justify-center items-left min-w-full"
+          class="flex flex-col w-full h-full justify-center items-left min-w-full"
         >
-          <div class=" flex flex-col px-[18rem]">
+          <div class="flex flex-col px-[18rem]">
             <div class="w-1/3 flex flex-row">
               <div class="flex flex-col">
                 <p class="text-md font-extralight">_PAD</p>
@@ -56,7 +74,7 @@
               </div>
               <div class="flex flex-row h-24 w-auto items-left">
                 <p class="text-3xl font-semibold">
-                  {launch.pad.name ? launch.pad.name : ""}
+                  {launch.pad.name ? launch.pad.name?.toUpperCase() : ""}
                 </p>
               </div>
             </div>
@@ -79,7 +97,10 @@
                       ? launch.launch_description.toUpperCase()
                       : ""}
                   </p>
-                  <button>[ SEE MORE ]</button>
+                  <button
+                    class="hover:text-red-500 hover:scale-95 transition-all duration-300"
+                    on:click={() => handleData(launch)}>[ SEE MORE ]</button
+                  >
                 </div>
               </div>
             </div>
@@ -91,6 +112,7 @@
         </swiper-slide>
       {/each}
     </swiper-container>
+    <Modal isOpen={showModal} onClose={closeModal} {props} />
   {/if}
 </main>
 
@@ -108,44 +130,8 @@
     left: 32px;
     margin-left: 1px;
   }
+
   swiper-container::part(bullet-active) {
     background-color: rgb(250, 28, 28);
-  }
-  .container {
-    position: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-
-  .circle-wrapper {
-    position: fixed;
-    width: 16rem;
-    height: 16rem;
-    right: -100px;
-    top: -150px;
-  }
-
-  .circle-wrapper::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    opacity: 0.2;
-    border: 1px dashed white; /* Cor e estilo da borda */
-    animation: spin 32s linear infinite; /* Animação */
-  }
-
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
   }
 </style>
