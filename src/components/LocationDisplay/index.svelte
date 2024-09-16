@@ -2,12 +2,12 @@
   export let location: any;
 </script>
 
-<div class="flex flex-col">
+<div class="flex flex-col justify-center items-start">
   <div class="flex flex-row justify-center items-center gap-2">
     <p>LOCATION</p>
-    <hr class="bg-black h-[1.5px] opacity-30 w-full" />
+    <hr class="border-red-600 h-[1.5px] w-24" />
   </div>
-  <p class="text-2xl font-semibold text-red-600">_EARTH</p>
+  <p class="text-3xl font-semibold text-red-600">_EARTH</p>
 
   <div class="flex flex-row">
     <p class="text-sm font-extralight">

@@ -80,7 +80,7 @@
             >
           </h1>
         </div>
-        <div>
+        <div class=" gap-2 max-h-72 overflow-x-auto">
           <h1 class="text-red-500">[_MISSION_DESCRIPTION_]</h1>
           {#each charactersDescription as char, index}
             <span class="char" style={`animation-delay: ${index * delay}ms;`}>

@@ -47,7 +47,7 @@
 </script>
 
 <div
-  class="text-center text-lg font-medium flex flex-col justify-end items-end w-32 absolute top-0 right-0"
+  class="text-center text-lg font-medium flex flex-col justify-end items-end w-32 absolute top-0 px-2"
 >
   <p class="text-red-600">{formattedDate}</p>
   <div class="flex flex-row w-full justify-center items-center gap-2">

@@ -14,7 +14,6 @@
     const minutes = String(date.getUTCMinutes()).padStart(2, "0");
     const seconds = String(date.getUTCSeconds()).padStart(2, "0");
 
-    // Formata a data no formato ISO
     return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
   }
 
@@ -49,42 +48,56 @@
   });
 </script>
 
-<div class="flex flex-row gap-4">
-  <p class="text-sm font-extralight text-red-500">[ MISSION COUNTDOWN ]</p>
+<div class="flex flex-col justify-center items-left">
+  <p class="text-xs font-extralight text-red-500">[ MISSION COUNTDOWN ]</p>
   {#if time.expired}
-    <p>BEING Launched</p>
+    <p>[_BEING_LAUNCHED]</p>
   {:else}
-    <div class="flex flex-col min-w-18 w-auto h-auto justify-right items-right">
-      <div class="flex flex-row justify-right items-center h-auto w-auto">
-        <hr class=" bg-black h-[1.5px] opacity-70 w-full" />
-        <p class="text-[0.1rem] text-gray-500 text-right px-1">days</p>
+    <div class="flex flex-row gap-4 justify-left items-center">
+      <div
+        class="flex flex-col min-w-18 w-auto h-auto justify-right items-right"
+      >
+        <div class="flex flex-row justify-right items-center h-auto w-auto">
+          <hr class=" bg-black h-[1.5px] opacity-70 w-full" />
+          <p class="text-[0.1rem] text-gray-500 text-right px-1">days</p>
+        </div>
+        <p class="text-5xl font-sans font-semibold text-center">{time.days}</p>
+        <hr class=" bg-black h-[1.5px] opacity-70 w-full mt-1" />
       </div>
-      <p class="text-5xl font-sans font-semibold text-center">{time.days}</p>
-      <hr class=" bg-black h-[1.5px] opacity-70 w-full mt-1" />
-    </div>
-    <div class="flex flex-col min-w-12 w-auto h-auto justify-right items-right">
-      <div class="flex flex-row justify-right items-center h-auto w-auto">
-        <hr class=" bg-black h-[1.5px] opacity-70 w-full" />
-        <p class="text-[0.1rem] text-gray-500 text-right px-1">hours</p>
+      <div
+        class="flex flex-col min-w-12 w-auto h-auto justify-right items-right"
+      >
+        <div class="flex flex-row justify-right items-center h-auto w-auto">
+          <hr class=" bg-black h-[1.5px] opacity-70 w-full" />
+          <p class="text-[0.1rem] text-gray-500 text-right px-1">hours</p>
+        </div>
+        <p class="text-5xl font-sans font-semibold text-center">{time.hours}</p>
+        <hr class=" bg-black h-[1.5px] opacity-70 w-full mt-1" />
       </div>
-      <p class="text-5xl font-sans font-semibold text-center">{time.hours}</p>
-      <hr class=" bg-black h-[1.5px] opacity-70 w-full mt-1" />
-    </div>
-    <div class="flex flex-col min-w-12 w-auto h-auto justify-right items-right">
-      <div class="flex flex-row justify-right items-center h-auto w-auto">
-        <hr class=" bg-black h-[1.5px] opacity-70 w-full" />
-        <p class="text-[0.1rem] text-gray-500 text-right px-1">minutes</p>
+      <div
+        class="flex flex-col min-w-12 w-auto h-auto justify-right items-right"
+      >
+        <div class="flex flex-row justify-right items-center h-auto w-auto">
+          <hr class=" bg-black h-[1.5px] opacity-70 w-full" />
+          <p class="text-[0.1rem] text-gray-500 text-right px-1">minutes</p>
+        </div>
+        <p class="text-5xl font-sans font-semibold text-center">
+          {time.minutes}
+        </p>
+        <hr class=" bg-black h-[1.5px] opacity-70 w-full mt-1" />
       </div>
-      <p class="text-5xl font-sans font-semibold text-center">{time.minutes}</p>
-      <hr class=" bg-black h-[1.5px] opacity-70 w-full mt-1" />
-    </div>
-    <div class="flex flex-col min-w-16 w-auto h-auto justify-right items-right">
-      <div class="flex flex-row justify-right items-center h-auto w-auto">
-        <hr class=" bg-black h-[1.5px] opacity-70 w-full" />
-        <p class="text-[0.1rem] text-gray-500 text-right px-1">seconds</p>
+      <div
+        class="flex flex-col min-w-16 w-auto h-auto justify-right items-right"
+      >
+        <div class="flex flex-row justify-right items-center h-auto w-auto">
+          <hr class=" bg-black h-[1.5px] opacity-70 w-full" />
+          <p class="text-[0.1rem] text-gray-500 text-right px-1">seconds</p>
+        </div>
+        <p class="text-5xl font-sans font-semibold text-center">
+          {time.seconds}
+        </p>
+        <hr class=" bg-black h-[1.5px] opacity-70 w-full mt-1" />
       </div>
-      <p class="text-5xl font-sans font-semibold text-center">{time.seconds}</p>
-      <hr class=" bg-black h-[1.5px] opacity-70 w-full mt-1" />
     </div>
   {/if}
 </div>
