@@ -40,7 +40,7 @@
     on:click={closeModal}
   >
     <button
-      class="relative bg-zinc-900 p-6 rounded-lg shadow-lg max-w-2/3 min-w-96 lg:w-1/3 h-auto cursor-auto z-50 text-left"
+      class="relative bg-zinc-900 p-6 rounded-lg shadow-lg max-w-2/3 min-w-32 lg:w-1/3 md:w-1/3 h-auto cursor-auto z-50 text-left"
       on:click|stopPropagation
     >
       <button
@@ -51,7 +51,7 @@
         <div>
           <h1 class="text-red-500">
             _MISSION_NAME_<span class="text-white"
-              >{props?.slug?.replace(/-/g, "_").toUpperCase()}</span
+              >{props?.slug?.toUpperCase()}</span
             >
           </h1>
           <h1 class="text-red-500">
@@ -65,7 +65,7 @@
           <h1 class="text-red-500">
             _PAD_LOCATION_
             <span class="text-white"
-              >[{props?.pad.location.slug.replace(/-/g, "_").toUpperCase()}
+              >[{props?.pad.location.slug.toUpperCase()}
               _{props?.pad.location.country.toUpperCase()}]</span
             >
           </h1>
@@ -80,7 +80,7 @@
             >
           </h1>
         </div>
-        <div class=" gap-2 max-h-72 overflow-x-auto">
+        <div class="gap-2 max-h-72 overflow-x-auto">
           <h1 class="text-red-500">[_MISSION_DESCRIPTION_]</h1>
           {#each charactersDescription as char, index}
             <span class="char" style={`animation-delay: ${index * delay}ms;`}>

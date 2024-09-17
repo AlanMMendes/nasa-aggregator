@@ -6,3 +6,21 @@
 body {
   background-color: rgb(24 24 27);
 }
+
+::-webkit-scrollbar {
+  width: 5px; /* Largura da barra de rolagem */
+  scrollbar-width: thin; /* Largura da barra de rolagem */
+  scrollbar-color: rgb(250, 28, 28) #f1f1f1; /* Cor do "polegar" e do trilho */
+}
+
+::-webkit-scrollbar-track {
+  background: rgb(24 24 27); /* Cor do trilho da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(250, 28, 28); /* Cor do "polegar" da barra de rolagem */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Cor do "polegar" quando hover */
+}

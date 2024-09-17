@@ -10,8 +10,8 @@
   <p class="text-3xl font-semibold text-red-600">_EARTH</p>
 
   <div class="flex flex-row">
-    <p class="text-sm font-extralight">
-      {location.slug.replace(/-/g, "_").toUpperCase()}
+    <p class="text-md font-extralight">
+      {location.slug?.toUpperCase()}
     </p>
   </div>
 </div>

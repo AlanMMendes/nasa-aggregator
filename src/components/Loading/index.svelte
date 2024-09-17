@@ -5,11 +5,7 @@
     <div
       class=" rounded-full h-full w-full border-t-2 border-b-2 border-gray-900 justify-center items-center flex gap-4"
     >
-      <i class="fa-solid fa-satellite floating text-red-500 text-4xl"></i>
-      <span class="text-red-500">[_LOADING] </span>
-      <span class="text-red-500 animate-pulse">.</span>
-      <span class="text-red-500 animate-pulse">.</span>
-      <span class="text-red-500 animate-pulse">.</span>
+      <i class="fa-solid fa-satellite floating text-red-600 text-4xl"></i>
     </div>
   </div>
 </main>

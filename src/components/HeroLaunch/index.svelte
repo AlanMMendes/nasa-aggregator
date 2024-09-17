@@ -3,7 +3,6 @@
   import { createQuery } from "@tanstack/svelte-query";
   import { onMount } from "svelte";
   import { register } from "swiper/element/bundle";
-  import { formatText } from "../../utils/utils";
   import Countdown from "../Countdown/index.svelte";
   import DateDisplay from "../DateDisplay/index.svelte";
   import Loading from "../Loading/index.svelte";
@@ -44,8 +43,7 @@
     <span>Error: {$launches.error.message}</span>
   {/if}
   {#if $launches.isSuccess}
-    <div>{$launches.isFetching ? "Background Updating..." : " "}</div>
-    <div class="flex justify-end">
+    <div class="absolute right-0 top-0 flex justify-end h-12">
       <DateDisplay />
     </div>
 
@@ -69,63 +67,49 @@
     >
       {#each $launches?.data?.result as launch}
         <swiper-slide
-          class="flex flex-col w-full h-full justify-center items-center"
+          class="relative w-full h-full flex justify-center items-center p-4"
         >
           <div
-            class="flex flex-col w-2/4 h-full items-left justify-center border"
+            class="relative w-[32rem] h-auto flex flex-col justify-left items-left border border-red-600 p-4 border-opacity-10 rounded-3xl hover:border-white transition-all duration-300"
           >
-            <div class="flex flex-row items-left justify-left w-full">
-              <div class="flex flex-col">
-                <div class="flex flex-row justify-between items-center w-full">
-                  <p class="text-2xl font-semibold">
-                    [_PAD]_{launch.pad.name
-                      ? launch.pad.name?.toUpperCase()
-                      : ""}
-                  </p>
-                </div>
+            <p class="text-lg text-red-600">
+              <span class="text-white">[ _PAD_</span>{launch?.pad?.name}_ ]
+            </p>
+            <p
+              class=" w-auto h-auto text-left lg:text-7xl md:text-5xl text-4xl"
+            >
+              [_<span class="text-red-600">{launch.slug.toUpperCase()}</span>]
+            </p>
+            <p class="text-lg text-red-600">
+              <span class="text-white">[_VEHICLE_</span
+              >{launch?.vehicle?.name.toUpperCase()}_]
+            </p>
+            <p class="text-lg text-red-600">
+              <span class="text-white">[_PROVIDER_</span
+              >{launch?.provider?.name.toUpperCase()}_]
+            </p>
+            <p
+              class="text-lg text-red-600 w-full h-[8rem] overflow-ellipsis overflow-y-auto"
+            >
+              <span class="text-white">[_MISSION_</span
+              >{launch?.mission_description?.toUpperCase() ||
+                "NO_NAME_MISSION"}_]
+            </p>
 
-                <p
-                  class="sm:text-5xl lg:text-5xl text-3xl font-bold text-red-600"
-                >
-                  {formatText(launch.slug ? launch.slug : "NO-NAME-MISSION")}
-                </p>
-              </div>
-            </div>
-            <div class="flex flex-col gap-2">
-              <div class="flex flex-col">
-                <div class="flex flex-col gap-2 z-10">
-                  <p>_OBJECTIVE</p>
-                  <hr class="border-red-600 w-32" />
-                </div>
-              </div>
-              <div class="flex flex-row items-center justify-left gap-2">
-                <div
-                  class="flex flex-col items-start justify-center gap-2 lg:max-h-44 md:max-h-32 overflow-x-auto"
-                >
-                  <p class="text-sm font-extralight max-w-full opacity-70">
-                    {launch.mission_description
-                      ? launch.mission_description.toUpperCase()
-                      : ""}
-                  </p>
-                  <p class="text-sm font-extralight w-full opacity-70">
-                    {launch.launch_description
-                      ? launch.launch_description.toUpperCase()
-                      : ""}
-                  </p>
-                  <button
-                    class="hover:text-red-500 hover:scale-95 transition-all duration-300"
-                    on:click={() => handleData(launch)}>[ SEE MORE ]</button
-                  >
-                </div>
-              </div>
-              <div class="py-2">
-                <Countdown date={launch.sort_date} />
-              </div>
+            <div
+              class=" bottom-0 right-0 justify-center flex-col items-center flex w-full gap-2"
+            >
+              <button
+                class="text-white text-md hover:text-red-600 hover:scale-105 transition-all duration-300"
+                on:click={() => handleData(launch)}
+              >
+                [_SEE_MORE]
+              </button>
+
+              <Countdown date={launch?.sort_date} />
             </div>
           </div>
-          <div
-            class="w-full flex flex-col lg:flex-row md:flex-row bottom-0 justify-between px-2"
-          >
+          <div class="absolute bottom-0 left-0 w-full h-auto px-2">
             <LocationDisplay location={launch.pad.location} />
           </div>
         </swiper-slide>
@@ -139,21 +123,31 @@
   swiper-container::part(button-prev) {
     z-index: 100;
     color: rgb(250, 28, 28);
+    position: fixed;
+    top: 12%;
+    left: 2;
+    width: 30px;
+    height: 30px;
   }
   swiper-container::part(button-next) {
     z-index: 100;
     color: rgb(250, 28, 28);
     position: fixed;
+    top: 12%;
+    right: 2;
+    width: 30px;
+    height: 30px;
   }
   swiper-container::part(pagination) {
     position: absolute;
     z-index: 99;
     width: 100%;
     height: 10%;
-    top: 0%;
+    top: 1%;
     left: 0;
   }
   swiper-container::part(bullet-active) {
     background-color: rgb(250, 28, 28);
   }
+  /* Para Webkit (Chrome, Safari) */
 </style>

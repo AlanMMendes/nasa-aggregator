@@ -26,7 +26,7 @@
     }}
   >
     <i
-      class="fas fa-bars text-white text-2xl hover:text-red-500 transition-all duration-300 hover:scale-110"
+      class="fas fa-bars text-white text-2xl hover:text-red-600 transition-all duration-300 hover:scale-110"
     ></i>
   </button>
 

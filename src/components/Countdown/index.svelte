@@ -48,8 +48,8 @@
   });
 </script>
 
-<div class="flex flex-col justify-center items-left">
-  <p class="text-xs font-extralight text-red-500">[ MISSION COUNTDOWN ]</p>
+<div class="flex flex-col justify-center items-center">
+  <p class="text-xs font-extralight text-red-600">[ MISSION COUNTDOWN ]</p>
   {#if time.expired}
     <p>[_BEING_LAUNCHED]</p>
   {:else}
