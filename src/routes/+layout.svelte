@@ -3,6 +3,7 @@
   import { QueryClient, QueryClientProvider } from "@tanstack/svelte-query";
   import "../app.css";
   import Navbar from "../components/Navbar/index.svelte";
+  import Notifications from "../components/Notifications/index.svelte";
 
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -19,6 +20,8 @@
 <QueryClientProvider client={queryClient}>
   <main>
     <Navbar />
+    <Notifications />
+
     <slot />
   </main>
 </QueryClientProvider>

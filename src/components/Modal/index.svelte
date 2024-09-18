@@ -6,24 +6,10 @@
 
   let delay = 15;
   let charactersDescription: any = [];
-  let charactersTitle: any = [];
-  let charactersLaunchDescription: any = [];
 
   function splitDescription(text: any) {
     charactersDescription = text?.split("");
   }
-
-  function splitTitle(text: any) {
-    charactersTitle = text?.split("");
-  }
-
-  function splitLaunchDescription(text: any) {
-    charactersLaunchDescription = text?.split("");
-  }
-
-  let line1 = "Linha 1";
-  let line2 = "Linha 2";
-  let text = `${line1}\n${line2}`;
 
   $: splitDescription(
     `${props?.mission_description}${props?.launch_description}`
@@ -40,7 +26,7 @@
     on:click={closeModal}
   >
     <button
-      class="relative bg-zinc-900 p-6 rounded-lg shadow-lg max-w-2/3 min-w-32 lg:w-1/3 md:w-1/3 h-auto cursor-auto z-50 text-left"
+      class="relative bg-zinc-900 p-6 rounded-lg shadow-lg max-w-2/3 min-w-32 lg:w-1/3 md:w-2/3 h-auto cursor-auto z-50 text-left"
       on:click|stopPropagation
     >
       <button
@@ -65,8 +51,8 @@
           <h1 class="text-red-500">
             _PAD_LOCATION_
             <span class="text-white"
-              >[{props?.pad.location.slug.toUpperCase()}
-              _{props?.pad.location.country.toUpperCase()}]</span
+              >{props?.pad.location.slug.toUpperCase()}
+              _{props?.pad.location.country.toUpperCase()}</span
             >
           </h1>
           <h1 class="text-red-500">
@@ -88,7 +74,9 @@
             </span>
           {/each}
         </div>
-        <div class="flex flex-row gap-2 justify-center items-center">
+        <div
+          class="flex flex-col lg:flex-row md:flex-row gap-2 justify-center items-center"
+        >
           {#each props.tags as tag}
             <button class="text-red-500">
               [_<span

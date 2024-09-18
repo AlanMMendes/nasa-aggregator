@@ -149,5 +149,4 @@
   swiper-container::part(bullet-active) {
     background-color: rgb(250, 28, 28);
   }
-  /* Para Webkit (Chrome, Safari) */
 </style>
