@@ -30,44 +30,44 @@
       on:click|stopPropagation
     >
       <button
-        class="absolute top-2 right-2 text-white text-xl hover:text-red-500 hover:scale-95 transition-all duration-300"
+        class="absolute top-2 right-2 text-white text-xl hover:text-red-600 hover:scale-95 transition-all duration-300"
         on:click={closeModal}>×</button
       >
       <div class="flex flex-col gap-2">
         <div>
-          <h1 class="text-red-500">
+          <h1 class="text-red-600">
             _MISSION_NAME_<span class="text-white"
               >{props?.slug?.toUpperCase()}</span
             >
           </h1>
-          <h1 class="text-red-500">
+          <h1 class="text-red-600">
             _MISSION_DATE_<span class="text-white"
               >{props?.date_str.toUpperCase()}</span
             >
           </h1>
-          <h1 class="text-red-500">
+          <h1 class="text-red-600">
             _PAD_<span class="text-white">{props?.pad.name.toUpperCase()}</span>
           </h1>
-          <h1 class="text-red-500">
+          <h1 class="text-red-600">
             _PAD_LOCATION_
             <span class="text-white"
               >{props?.pad.location.slug.toUpperCase()}
               _{props?.pad.location.country.toUpperCase()}</span
             >
           </h1>
-          <h1 class="text-red-500">
+          <h1 class="text-red-600">
             _PROVIDER_<span
               >{props?.provider?.slug?.replace(/-/g, "_")?.toUpperCase()}</span
             >
           </h1>
-          <h1 class="text-red-500">
+          <h1 class="text-red-600">
             _VEHICLE_<span class="text-white"
               >{props?.vehicle?.name.toUpperCase()}</span
             >
           </h1>
         </div>
         <div class="gap-2 max-h-72 overflow-x-auto">
-          <h1 class="text-red-500">[_MISSION_DESCRIPTION_]</h1>
+          <h1 class="text-red-600">[_MISSION_DESCRIPTION_]</h1>
           {#each charactersDescription as char, index}
             <span class="char" style={`animation-delay: ${index * delay}ms;`}>
               {char === " " ? "\u00A0" : char.toLocaleUpperCase()}
@@ -78,9 +78,9 @@
           class="flex flex-col lg:flex-row md:flex-row gap-2 justify-center items-center"
         >
           {#each props.tags as tag}
-            <button class="text-red-500">
+            <button class="text-red-600">
               [_<span
-                class="text-white border-b-2 border-red-500 hover:border-white transition-all duration-300"
+                class="text-white border-b-2 border-red-600 hover:border-white transition-all duration-300"
                 >{tag.text.toUpperCase()}_</span
               >]
             </button>

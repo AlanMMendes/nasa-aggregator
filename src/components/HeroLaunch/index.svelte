@@ -65,7 +65,7 @@
           class="relative w-full h-full flex justify-center items-center p-4"
         >
           <div
-            class="relative w-[32rem] mb-10 h-auto flex flex-col justify-left items-left border border-red-600 p-4 border-opacity-10 rounded-3xl hover:border-white transition-all duration-300"
+            class="relative w-[32rem] mb-10 h-auto flex flex-col justify-left items-left p-4 rounded-3xl transition-all duration-300"
           >
             <p class="text-lg text-red-600">
               <span class="text-white">[ _PAD_</span>{launch?.pad?.name}_ ]
@@ -134,7 +134,7 @@
     z-index: 99;
     width: 100%;
     height: 10%;
-    top: 1%;
+    top: 0%;
     left: 0;
   }
   swiper-container::part(bullet-active) {
