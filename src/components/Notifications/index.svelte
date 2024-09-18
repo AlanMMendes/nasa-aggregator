@@ -30,7 +30,7 @@
 </script>
 
 <main
-  class="fixed left-[2rem] px-2 top-0 py-2 z-50 text-white w-[14rem] lg:w-1/3 md:w-1/3"
+  class="left-[2rem] px-2 top-0 py-2 z-50 text-white w-auto"
   bind:this={isOutsideNews}
 >
   {#if !notifications || $notifications.isPending}
@@ -57,7 +57,7 @@
     </button>
     {#if isOpen}
       <div
-        class=" overflow-x-hidden bg-zinc-950 rounded-lg flex gap-4 flex-col p-4 max-h-96 overflow-y-auto"
+        class="absolute overflow-x-hidden bg-zinc-950 rounded-lg flex gap-4 flex-col p-4 max-h-96 overflow-y-auto w-1/4"
       >
         <h1
           class="text-lg font-bold"

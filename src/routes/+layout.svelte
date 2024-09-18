@@ -2,6 +2,7 @@
   import { browser } from "$app/environment";
   import { QueryClient, QueryClientProvider } from "@tanstack/svelte-query";
   import "../app.css";
+  import DateDisplay from "../components/DateDisplay/index.svelte";
   import Navbar from "../components/Navbar/index.svelte";
   import Notifications from "../components/Notifications/index.svelte";
 
@@ -18,9 +19,16 @@
 </script>
 
 <QueryClientProvider client={queryClient}>
-  <main>
-    <Navbar />
-    <Notifications />
+  <main class="h-screen w-full flex flex-col justify-between">
+    <div class="flex flex-row justify-between">
+      <div class="flex flex-row order-first">
+        <Navbar />
+        <Notifications />
+      </div>
+      <div class="flex flex-row order-last">
+        <DateDisplay />
+      </div>
+    </div>
 
     <slot />
   </main>

@@ -19,7 +19,7 @@
   });
 </script>
 
-<nav class="fixed left-0 px-2 top-0 py-2 z-50 text-white" bind:this={isOutside}>
+<nav class="px-2 py-2 z-50 text-white" bind:this={isOutside}>
   <button
     on:click={() => {
       toggleMenu();

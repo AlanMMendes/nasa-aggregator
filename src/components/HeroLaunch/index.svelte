@@ -4,7 +4,6 @@
   import { onMount } from "svelte";
   import { register } from "swiper/element/bundle";
   import Countdown from "../Countdown/index.svelte";
-  import DateDisplay from "../DateDisplay/index.svelte";
   import Loading from "../Loading/index.svelte";
   import LocationDisplay from "../LocationDisplay/index.svelte";
   import Modal from "../Modal/index.svelte";
@@ -43,10 +42,6 @@
     <span>Error: {$launches.error.message}</span>
   {/if}
   {#if $launches.isSuccess}
-    <div class="absolute right-0 top-0 flex justify-end h-12">
-      <DateDisplay />
-    </div>
-
     <swiper-container
       slides-per-view="1"
       effect="fade"
@@ -70,14 +65,12 @@
           class="relative w-full h-full flex justify-center items-center p-4"
         >
           <div
-            class="relative w-[32rem] h-auto flex flex-col justify-left items-left border border-red-600 p-4 border-opacity-10 rounded-3xl hover:border-white transition-all duration-300"
+            class="relative w-[32rem] mb-10 h-auto flex flex-col justify-left items-left border border-red-600 p-4 border-opacity-10 rounded-3xl hover:border-white transition-all duration-300"
           >
             <p class="text-lg text-red-600">
               <span class="text-white">[ _PAD_</span>{launch?.pad?.name}_ ]
             </p>
-            <p
-              class=" w-auto h-auto text-left lg:text-7xl md:text-5xl text-4xl"
-            >
+            <p class="w-auto h-auto text-left lg:text-7xl md:text-5xl text-4xl">
               [_<span class="text-red-600">{launch.slug.toUpperCase()}</span>]
             </p>
             <p class="text-lg text-red-600">
@@ -96,11 +89,9 @@
                 "NO_NAME_MISSION"}_]
             </p>
 
-            <div
-              class=" bottom-0 right-0 justify-center flex-col items-center flex w-full gap-2"
-            >
+            <div class="justify-center flex-col items-center flex w-full">
               <button
-                class="text-white text-md hover:text-red-600 hover:scale-105 transition-all duration-300"
+                class="text-white text-md hover:text-red-600 hover:scale-105 transition-all duration-300 py-2"
                 on:click={() => handleData(launch)}
               >
                 [_SEE_MORE]
