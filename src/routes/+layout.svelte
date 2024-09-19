@@ -23,7 +23,9 @@
   <main class="h-screen w-full flex flex-col justify-between">
     <div class="flex flex-row justify-between">
       <div class="flex flex-row order-first justify-center items-center px-2">
-        <Nasa />
+        <a href="/" class="hover:scale-110 transition-all duration-300">
+          <Nasa />
+        </a>
         <Navbar />
         <Notifications />
       </div>

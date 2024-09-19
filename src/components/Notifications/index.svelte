@@ -20,8 +20,13 @@
     return () => document.removeEventListener("click", closeDropdown);
   });
 
-  const startDate = "2014-05-01";
-  const endDate = "2014-05-08";
+  const dateToday = new Date().toISOString().split("T")[0];
+  const dateOneWeekAgo = new Date(new Date().setDate(new Date().getDate() - 7))
+    .toISOString()
+    .split("T")[0];
+
+  const startDate = dateToday;
+  const endDate = dateOneWeekAgo;
 
   const notifications: any = createQuery({
     queryKey: ["notifications"],
@@ -29,10 +34,7 @@
   });
 </script>
 
-<main
-  class="left-[2rem] px-2 top-0 py-2 z-50 text-white w-auto"
-  bind:this={isOutsideNews}
->
+<main class=" px-2 py-2 z-50 text-white" bind:this={isOutsideNews}>
   {#if !notifications || $notifications.isPending}
     <button
       on:click={() => {
@@ -57,7 +59,7 @@
     </button>
     {#if isOpen}
       <div
-        class="absolute overflow-x-hidden bg-zinc-950 rounded-lg flex gap-4 flex-col p-4 max-h-96 overflow-y-auto w-1/4"
+        class="absolute left-2 overflow-x-hidden bg-zinc-950 rounded-lg flex gap-4 flex-col p-4 max-h-96 overflow-y-auto lg:w-1/4 md:w-2/2 w-[17rem]"
       >
         <h1
           class="text-lg font-bold"
@@ -67,7 +69,7 @@
         </h1>
         {#each $notifications.data as notification}
           <div
-            class=" flex flex-col border border-opacity-10 border-red-600 p-4 gap-2 rounded-3xl hover:border-white"
+            class="flex flex-col border border-opacity-10 border-red-600 p-4 gap-2 rounded-3xl hover:border-white"
           >
             <p>
               [{notification.messageID}]_{notification.messageType.toUpperCase()}

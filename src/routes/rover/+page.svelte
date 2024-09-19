@@ -4,13 +4,47 @@
   import ImageTooltip from "../../components/ImageTooltip/index.svelte";
   import Loading from "../../components/Loading/index.svelte";
 
-  const rover: any = createQuery({
-    queryKey: ["rover"],
-    queryFn: fetchRoverInformation,
+  let options = [
+    {
+      id: 1,
+      name: "Curiosity",
+      value: "curiosity",
+      disabled: false,
+    },
+    {
+      id: 2,
+      name: "Opportunity",
+      value: "opportunity",
+      disabled: true,
+    },
+  ];
+
+  let selectedOption: any = options[0].value;
+
+  const handleChange = (e: any) => {
+    selectedOption = e.target.value;
+  };
+
+  $: rover = createQuery<any>({
+    queryKey: [`${selectedOption}-rover`, selectedOption],
+    queryFn: () => fetchRoverInformation(selectedOption),
   });
 </script>
 
-<main class="w-full h-auto">
+<main class="w-auto h-auto min-h-full">
+  <div class="w-auto h-auto flex justify-center items-center">
+    <select
+      bind:value={selectedOption}
+      on:change={handleChange}
+      class="border border-red-600 rounded-md p-2 bg-zinc-900 text-white shadow-sm focus:outline-none focus:ring focus:ring-red-600"
+    >
+      {#each options as option}
+        <option disabled={option.disabled} value={option.value}
+          >{option.name}</option
+        >
+      {/each}
+    </select>
+  </div>
   {#if !rover || $rover.isPending}
     <Loading />
   {/if}
@@ -21,7 +55,7 @@
     <div
       class="flex flex-row flex-wrap gap-2 justify-center items-center py-12"
     >
-      {#each $rover.data.slice(0, 10) as photo}
+      {#each $rover.data.slice(0, 24) as photo}
         <div
           class="w-96 border border-opacity-40 border-gray-400 min-h-72 rounded-md relative"
         >

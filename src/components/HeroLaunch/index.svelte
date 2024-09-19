@@ -62,10 +62,10 @@
     >
       {#each $launches?.data?.result as launch}
         <swiper-slide
-          class="relative w-full h-full flex justify-center items-center p-4"
+          class="relative w-full h-full flex justify-center items-center"
         >
           <div
-            class="relative w-[32rem] mb-10 h-auto flex flex-col justify-left items-left p-4 rounded-3xl transition-all duration-300"
+            class="relative w-[32rem] border-2 border-solid border-red-600 border-opacity-20 hover:border-white h-auto flex flex-col justify-left items-left p-4 rounded-3xl transition-all duration-300"
           >
             <p class="text-lg text-red-600">
               <span class="text-white">[ _PAD_</span>{launch?.pad?.name}_ ]
@@ -98,10 +98,10 @@
               </button>
 
               <Countdown date={launch?.sort_date} />
+              <div class=" bottom-0 left-0 w-full h-auto px-2">
+                <LocationDisplay location={launch.pad.location} />
+              </div>
             </div>
-          </div>
-          <div class="absolute bottom-0 left-0 w-full h-auto px-2">
-            <LocationDisplay location={launch.pad.location} />
           </div>
         </swiper-slide>
       {/each}
@@ -114,8 +114,8 @@
   swiper-container::part(button-prev) {
     z-index: 100;
     color: rgb(250, 28, 28);
-    position: fixed;
-    top: 12%;
+    position: absolute;
+    top: 10%;
     left: 2;
     width: 30px;
     height: 30px;
@@ -123,8 +123,8 @@
   swiper-container::part(button-next) {
     z-index: 100;
     color: rgb(250, 28, 28);
-    position: fixed;
-    top: 12%;
+    position: absolute;
+    top: 10%;
     right: 2;
     width: 30px;
     height: 30px;

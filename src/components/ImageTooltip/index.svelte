@@ -1,21 +1,7 @@
 <script lang="ts">
-  import ModalPicture from "./ModalPicture/index.svelte";
   export let props: any;
   let hovering = false;
   let showModal = false;
-
-  function openModal() {
-    showModal = true;
-  }
-
-  function closeModal() {
-    showModal = false;
-  }
-
-  function handleData(event: any) {
-    openModal();
-    props = event;
-  }
 
   function handleMouseEnter() {
     hovering = true;
@@ -44,11 +30,12 @@
           hovering ? "opacity-100" : "opacity-0"
         }`}
       >
-        <button
+        <a
+          href={props.img_src}
+          target="_blank"
           class="absolute top-2 right-2 hover:text-red-500 hover:scale-95 transition-all duration-300"
-          on:click={() => handleData(props)}
-          ><i class="fa-solid fa-up-right-and-down-left-from-center"
-          ></i></button
+        >
+          <i class="fa-solid fa-up-right-from-square"></i></a
         >
         <h1 class="text-lg w-48">_{props?.rover.name.toUpperCase()}</h1>
         <p class="text-sm">
@@ -60,6 +47,5 @@
         </p>
       </div>
     {/if}
-    <ModalPicture isOpen={showModal} onClose={closeModal} {props} />
   </div>
 </main>
